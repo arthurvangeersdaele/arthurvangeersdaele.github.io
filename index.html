@@ -1,188 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Earth-africa-europe_-_Delapouite_-_game-icons.svg/640px-Earth-africa-europe_-_Delapouite_-_game-icons.svg.png">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Earth-africa-europe_-_Delapouite_-_game-icons.svg/640px-Earth-africa-europe_-_Delapouite_-_game-icons.svg.png">
 
-  <title>Arthur</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap');
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: linear-gradient(115deg, 
-                rgba(255, 255, 255, 0.8), 
-                rgba(255, 245, 250, 0.8), 
-                rgba(245, 255, 255, 0.8), 
-                rgba(255, 255, 240, 0.8));
-    background-size: 400% 400%;
-    animation: iridescentBackground 20s ease infinite;
-    color: #0A0A0A;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    backdrop-filter: blur(2px);
-  }
+	<title>Arthur</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap');
+		@media (min-width: 768px) {
+			html, body {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background: linear-gradient(115deg, 
+					rgba(255, 255, 255, 0.8), 
+					rgba(255, 245, 250, 0.8), 
+					rgba(245, 255, 255, 0.8), 
+					rgba(255, 255, 240, 0.8));
+				background-size: 400% 400%;
+				animation: iridescentBackground 20s ease infinite;
+				color: #0A0A0A;
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				display: flex;
+/*				align-items: center;*/
+				justify-content: center;
+				text-align: center;
+				backdrop-filter: blur(2px);
+			}
 
 /* Animation keyframes */
 @keyframes iridescentBackground {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+#background-video {
+	position: fixed; 
+  top: 0;
+	left: calc(-0.5*100vw+400px);
+	width: calc(100vw - 44px);
+	min-width: calc(100vw - 44px); /* span full screen width */
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the entire viewport without distortion */
+  z-index: -1; /* Places the video behind other content */
+  opacity: 0.5; /* Translucency */
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0) 95%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0) 95%);
+  transition: opacity 5s ease; 
+}
+.content {
+	max-width: 800px;
+	padding: 40px;
 }
 
-    .content {
-      max-width: 800px;
-      padding: 40px;
-    }
+img.thumb{
+	position:relative;
+	width:20vh; height:20vh; 
+	max-width: 150px;
+	max-height: 150px;
+	position:relative;
 
-    img.thumb{
-      width:150px; height:150px; 
-      position:relative;
-      margin-top:-150px;
-      margin-bottom:150px;
-    }
+	padding-top:15vh;
+}
 
-    .name {
-      position: fixed; /* ensure it detaches from the body flow */
-      top: 0;
-      left: calc(-0.5*100vw+400px);
-      width: calc(100vw - 44px); /* span full screen width */
-      color: #0A0A0A;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 24px;
-      text-align: left;
-      padding: 8px; /* optional for spacing */
-      padding-top:16px;
-      padding-left:8px;
-      z-index: 10; /* ensure it appears above other elements */
-    }
+.name {
+	position: fixed; /* ensure it detaches from the body flow */
+	top: 0;
+	left: calc(-0.5*100vw+400px);
+	width: calc(100vw - 44px); /* span full screen width */
+	color: #0A0A0A;
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font-size: 24px;
+	text-align: left;
+	padding: 8px; /* optional for spacing */
+	padding-top:16px;
+	padding-left:8px;
+	z-index: 10; /* ensure it appears above other elements */
+}
 
-    h1 {
-      font-size: 48px;
-      font-weight: 700;
-      margin-bottom:50px;
-    }
+h1 {
+	position: relative;
+	margin-top: 10vh;
+	font-size: 48px;
+	font-weight: 700;
+	margin-bottom:50px;
+}
 
-    p {
-      font-size: 20px;
-      font-weight: 600;
-      color: #444;
-    }
+p {
+	font-size: 20px;
+	font-weight: 600;
+	color: #444;
+}
 
-    .scroll-container {
-      position: absolute;
-      bottom:0;               
-      width: 100vh;
-      margin-top: 50px;
-      padding: 30px 30px 30px 30px;
-      display: flex;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scrollbar-width: thin;
-      gap: 16px;
-      justify-content: center;
-    }
+.scroll-container {
+	position: absolute;
+	bottom:0;               
+	width: 100vh;
+	margin-top: 50px;
+	padding: 30px 30px 30px 30px;
+	display: flex;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: thin;
+	gap: 16px;
+	justify-content: center;
+}
 
-    .scroll-container::-webkit-scrollbar {
-      height: 8px;
-    }
+.scroll-container::-webkit-scrollbar {
+	height: 8px;
+}
 
-    .scroll-container::-webkit-scrollbar-thumb {
-      background-color: #888;
-      border-radius: 8px;
-    }
+.scroll-container::-webkit-scrollbar-thumb {
+	background-color: #888;
+	border-radius: 8px;
+}
 
-    .button {
-  width: calc(1.618*150px);
-  height: 150px;
-  border-radius: 20px;
-  background-size: cover;
-  background-position: center;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: white; /* Text color */
-  font-weight: bold; /* Makes the text bold */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; /* Apple-styled font */
-  text-align: center; /* Centers the text */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; /* Required for the pseudo-element to be positioned correctly */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Adds subtle text shadow for better visibility */
-  font-size: 24px; /* Makes the text bigger */
+.button {
+	width: calc(1.618*150px);
+	height: 10vh;
+	border-radius: min(20px, 1vh);
+	background-size: cover;
+	background-position: center;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	color: white; /* Text color */
+	font-weight: bold; /* Makes the text bold */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; /* Apple-styled font */
+	text-align: center; /* Centers the text */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative; /* Required for the pseudo-element to be positioned correctly */
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Adds subtle text shadow for better visibility */
+	font-size: min(24px, 3vh); /* Makes the text bigger */
 }
 
 .button::after {
-  content: ''; /* No text content */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4); /* Darkens the background */
-  border-radius: 20px; /* Ensures the overlay matches the button's rounded corners */
-  z-index: 1; /* Places the overlay below the text */
+	content: ''; /* No text content */
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.4); /* Darkens the background */
+	border-radius:  min(20px, 1vh); /* Ensures the overlay matches the button's rounded corners */
+	z-index: 1; /* Places the overlay below the text */
+}
+
+
+}
+@media screen and (max-width: 768px) {
+	html, body {
+		margin: 0;
+		padding: 0;
+		height: auto;
+		background: linear-gradient(115deg, 
+			rgba(255, 255, 255, 0.8), 
+			rgba(255, 245, 250, 0.8), 
+			rgba(245, 255, 255, 0.8), 
+			rgba(255, 255, 240, 0.8));
+		background-size: 100% 100%;
+		font-family: 'Inter', sans-serif;
+		display: block;
+		text-align: center;
+		overflow-x: hidden;
+	}
+#background-video {
+	display:none;
+}
+	.name {
+		position: relative;
+		width: 100%;
+		font-size: 18px;
+		padding: 16px 0;
+		background-color: rgba(255, 255, 255, 0.7);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		z-index: 10;
+	}
+
+	.content {
+		padding: 20px 16px;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+
+	.thumb {
+		width: 80px;
+		height: 80px;
+		margin: 20px auto;
+		display: block;
+	}
+
+	h1 {
+
+		font-size: 28px;
+		font-weight: 700;
+		margin-bottom: 20px;
+	}
+
+	p {
+		font-size: 16px;
+		font-weight: 500;
+		color: #333;
+		padding: 0 12px;
+	}
+
+	.scroll-container {
+		display: flex;
+		flex-direction: column;
+		padding: 0px;
+		gap: 16px;
+		overflow: visible;
+		position: relative;
+		width: 100%;
+	}
+
+	.button {
+		width: 90%;
+		height: 100px;
+		border-radius: 16px;
+		background-size: cover;
+		background-position: center;
+		border: none;
+		margin: 0 auto;
+		font-size: 20px;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		position: relative;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+	}
+
+	.button::after {
+		content: '';
+		position: absolute;
+		top: 0; left: 0; right: 0; bottom: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		border-radius: 16px;
+		z-index: 1;
+	}
+	/* Improve tap targets on small screens */
+
+	.button:active {
+		transform: scale(0.98);
+	}
 }
 
 .button span {
-  z-index: 2; /* Makes sure the text is above the overlay */
+	z-index: 2; /* Makes sure the text is above the overlay */
 }
 
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
+.button:hover {
+	transform: scale(1.05);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-    /* Sample background images for the buttons */
-    .button1 {
-      background-image: url('https://static.wixstatic.com/media/ac4452_389b165201a044a0ae2cd40c4582040f~mv2.jpg/v1/fill/w_870,h_516,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Tumor%202%20WEb_7830_edited.jpg');
-    }
+/* Sample background images for the buttons */
+.button1 {
+	background-image: url('https://static.wixstatic.com/media/ac4452_389b165201a044a0ae2cd40c4582040f~mv2.jpg/v1/fill/w_870,h_516,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Tumor%202%20WEb_7830_edited.jpg');
+}
 
-    .button2 {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Formules.JPG/640px-Formules.JPG');
-    }
+.button2 {
+	background-image: url('https://www.croix-rouge.be/content/uploads/sites/5/2020/06/DSC7944-1024x684.jpg');
+}
 
-    .button3 {
-      background-image: url('https://www.croix-rouge.be/content/uploads/sites/5/2020/06/DSC7944-1024x684.jpg');
-    }
+.button3 {
+	background-image: url('./imgs/3DP_heart.jpg');
+}
 
-    .button4 {
-      background-image: url('./imgs/open_source_scd.png');
-    }
+.button4 {
+	background-image: url('./imgs/open_source_scd.png');
+}
 
-   
-  </style>
+
+
+</style>
 </head>
 <body>
-  <header class="name"> Arthur Van Geersdaele </header>
-  <div class="content">
-    <img class="thumb" src="./icons/earth.svg">
-    <h1>People working together for people.</h1>
-  <p> Let's collaborate toward international selfless health and well-being.</p>
-  </div>
+	<video id="background-video" autoplay muted loop playsinline></video>
+	<header class="name"> Arthur Van Geersdaele </header>
+	<div class="content">
+		<img class="thumb" src="./icons/earth.svg">
+		<h1>People working together for people.</h1>
+		<p> Let's collaborate toward international selfless health and well-being.</p>
+	</div>
 
-  <div class="scroll-container">
-  <button class="button button1" onclick="goTo('./cv/')"> <span> Biomedical<br>Engineer </span> </button>
-  <button class="button button2" onclick="goTo('./cv/')"> <span> Curriculum Vitae </span></button>
-  <button class="button button3" onclick="goTo('./cv/')"> <span> Red-Cross </span></button>
-  <button class="button button4" onclick="goTo('./cv/')"> <span> Open-Source Projects </span></button>
+	<div class="scroll-container">
+		<button tabindex="-1" class="button button1" onclick="goTo('./cv/')"> <span> Curriculum Vitae</span> </button>
+		<button tabindex="-1" class="button button2" onclick="goTo('./cv/')"> <span> Red-Cross </span></button>
+		<button tabindex="-1" class="button button3" onclick="goTo('./cv/')"> <span> 3D Printing </span></button>
+		<button tabindex="-1" class="button button4" onclick="goTo('./cv/')"> <span> Open-Source Projects </span></button>
+	</div>
 </div>
-    </div>
 
-  </div>
+</div>
 
 </body>
 <script>
-  function goTo(url) {
-    window.location.href = url;
-  }
+	function goTo(url) {
+		window.location.href = url;
+	}
+
+  const videos = [
+            "videos/aaos.mp4",
+            "videos/blood_mixer.mp4",
+            "videos/mzumbe.mp4",
+            "videos/mzumbe_foot.mp4",         
+            "videos/curing1.mp4",
+            "videos/sawbon_cut1.mp4",
+            "videos/sawbon_cut2.mp4",
+            "videos/camp_malte.mp4"
+        ];
+
+  const videoElement = document.getElementById("background-video");
+
+// Shuffle the videos array
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
+    }
+}
+
+// Function to change the video every 30 seconds
+function playSequentialVideos() {
+    let currentIndex = 0;
+
+    // Shuffle the array
+    shuffleArray(videos);
+
+    // Function to play the next video
+    function changeVideo() {
+        if (currentIndex >= videos.length) {
+            currentIndex = 0; // Reset index if we reach the end of the array
+            shuffleArray(videos); // Shuffle again for next loop
+        }
+
+        const videoToPlay = videos[currentIndex];
+        currentIndex++;
+
+        // Fade out current video
+        videoElement.style.opacity = 0;
+
+        // After fade-out, change the source and fade it back in
+        setTimeout(() => {
+            videoElement.src = videoToPlay; // Change video source
+            videoElement.load(); // Reload the video
+            videoElement.play(); // Play the new video
+            videoElement.playbackRate = 1.0;
+            videoElement.style.opacity = 1; // Fade it back in
+        }, 5000); // Time for the fade-out to complete (2 seconds)
+    }
+
+    // Start playing the first video
+    setInterval(changeVideo, 10000); // Change video every 30 seconds
+}
+
+// Start the sequence
+playSequentialVideos();
+
+  
 </script>
 </html>
