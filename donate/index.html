@@ -2,34 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.0/build/qrcode.min.js"></script>
+  <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Earth-africa-europe_-_Delapouite_-_game-icons.svg/640px-Earth-africa-europe_-_Delapouite_-_game-icons.svg.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Support Our Work</title>
+
+  <title>Support</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f9fc;
-      color: #1c1c1c;
+      background: linear-gradient(115deg, 
+          rgba(255, 255, 255, 0.8), 
+          rgba(255, 245, 250, 0.8), 
+          rgba(245, 255, 255, 0.8), 
+          rgba(255, 255, 240, 0.8));
+      background-size: 400% 400%;
+      animation: iridescentBackground 20s ease infinite;
+      color: #0A0A0A;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
     }
-
+    /* Animation keyframes */
+    @keyframes iridescentBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
     .container {
       background: white;
       border-radius: 16px;
-      padding: 40px;
+      padding: 28px;
       box-shadow: 0 8px 30px rgba(0, 116, 212, 0.1);
       max-width: 400px;
       text-align: center;
     }
 
     h1 {
-      color: #0074D4;
+      color: #0A0A0A;
       font-size: 28px;
+      padding:0;
+      margin:0;
       margin-bottom: 16px;
     }
 
@@ -37,20 +54,53 @@
       font-size: 16px;
       margin-bottom: 24px;
     }
+    select {
+      position:relative;
+      width:calc(100% - 2*12%);
+      margin:0 12%;
+    }
+
+    select.apple-style {
+      appearance: none; /* Remove default style */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      padding: 10px 14px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      color: #333;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    select.apple-style:focus {
+      outline: none;
+      border-color: #007aff;
+      box-shadow: 0 0 0 2px rgba(74, 80, 224,0.3);
+    }
+
+    select.apple-style:hover {
+      background-color: #f0f0f0;
+    }
 
     .qr-code {
       width: 200px;
-      margin: 0 auto 24px auto;
+      height:200px;
+      margin: 0 12px 24px 12px;
     }
 
     .donate {
-      background-color: #0074D4;
+      background-color: #4f55f1;
       color: white;
       font-weight: 600;
       font-size: 16px;
       padding: 12px 24px;
       border: none;
-      border-radius: 12px;
+      border-radius: 6px;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0, 116, 212, 0.2);
       transition: background-color 0.3s ease, transform 0.2s ease;
@@ -59,7 +109,7 @@
     }
 
     .donate:hover {
-      background-color: #005fa3;
+      background-color: #6454ff;
       transform: translateY(-1px);
     }
 
@@ -68,7 +118,7 @@
     }
 
     footer {
-      margin-top: 32px;
+      margin-top: 16px;
       font-size: 12px;
       color: #666;
     }
@@ -77,11 +127,16 @@
 <body>
 
   <div class="container">
-    <h1>Support Our Mission</h1>
-    <p>Scan the QR code below or click the button to donate securely via Revolut.</p>
-    <img src="your-revolut-qr.png" alt="Revolut QR Code" class="qr-code">
+    <h1>Stand With Volunteers</h1>
+    <p>Select your cause, then scan the QR code below or click the button to donate.</p>
+    <select class="apple-style" id="projectSelect" style="margin-bottom: 16px; padding: 8px; border-radius: 8px;">
+      <option value="https://revolut.me/avangeersdaele">General Support</option>
+      <option value="https://revolut.me/avangeersdaele">3D Printing for Surgery</option>
+      <option value="https://revolut.me/avangeersdaele">Open-Source Med Devices</option>
+    </select>
+    <canvas class="qr-code" id="qrcode"></canvas>
     <br>
-    <a href="https://revolut.me/YOUR_REVOLUT_ME_LINK" class="donate" target="_blank">🔒 Donate via Revolut</a>
+    <a id="link" href="https://revolut.me/avangeersdaele" class="donate" target="_blank"><i class="fa-solid fa-money-check" style="margin-right:12px;"></i> Donate by card</a>
   </div>
 
   <footer>
@@ -89,4 +144,47 @@
   </footer>
 
 </body>
+
+<script>
+        // Map of project URLs
+const projects = {
+  "https://revolut.me/avangeersdaele": "General Support",
+  "https://revolut.me/avangeersdaele": "3D Printing for Surgery",
+  "https://revolut.me/avangeersdaele": "Open-Source Med Devices"
+};
+
+const select = document.getElementById("projectSelect");
+const link = document.getElementById("link");
+const qrContainer = document.getElementById("qrcode");
+
+// Function to update link and QR
+function updateQRCodeAndLink(url) {
+  if (typeof url !== "string" || url.trim() === "") {
+    console.error("Invalid URL:", url);
+    alert("The selected project has an invalid URL.");
+    return;
+  }
+
+  link.href = url;
+
+  QRCode.toCanvas(qrContainer, url, function (error) {
+    if (error) {
+      console.error("QR Code error:", error);
+      alert("QR code generation failed.");
+    }
+  });
+}
+
+
+// Initial load
+updateQRCodeAndLink(select.value);
+
+// On change
+select.addEventListener("change", function () {
+  updateQRCodeAndLink(this.value);
+});
+
+</script>
+
+
 </html>

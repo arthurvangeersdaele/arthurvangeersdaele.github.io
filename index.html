@@ -4,6 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Earth-africa-europe_-_Delapouite_-_game-icons.svg/640px-Earth-africa-europe_-_Delapouite_-_game-icons.svg.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<title>Arthur</title>
 	<style>
@@ -152,6 +153,25 @@ p {
 }
 
 
+.discrete-donate{
+	position: fixed; /* ensure it detaches from the body flow */
+	bottom: 0;
+	left: calc(-0.5*100vw+400px);
+	width: calc(100vw - 44px); /* span full screen width */
+	color: #bbb;
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font-size: 18px;
+	text-decoration: none;
+	text-align: right;
+	padding: 8px; /* optional for spacing */
+	padding-top:16px;
+	padding-left:8px;
+	z-index: 10; /* ensure it appears above other elements */
+}
+.discrete-donate:hover{
+	color: #0A0A0A;
+}
+
 }
 @media screen and (max-width: 768px) {
 	html, body {
@@ -251,6 +271,11 @@ p {
 	.button:active {
 		transform: scale(0.98);
 	}
+
+	.discrete-donate{
+		display:none;
+	}
+
 }
 
 .button span {
@@ -279,6 +304,9 @@ p {
 	background-image: url('./imgs/open_source_scd.png');
 }
 
+.button5 {
+	background-image: url('https://www.uclouvain.be/system/files/styles/wide/private/uclouvain_assetmanager/groups/cms-editors-fondlouv/lydie/Breath4Life_UCLouvain_3_corr.jpg?h=5857f9cc&itok=jBTb4LFU');
+}
 
 
 </style>
@@ -297,7 +325,10 @@ p {
 		<button tabindex="-1" class="button button2" onclick="goTo('./cv/')"> <span> Red-Cross </span></button>
 		<button tabindex="-1" class="button button3" onclick="goTo('./cv/')"> <span> 3D Printing </span></button>
 		<button tabindex="-1" class="button button4" onclick="goTo('./cv/')"> <span> Open-Source Projects </span></button>
+		<button tabindex="-1" class="button button5" onclick="goTo('./cv/')"> <span> Open Med Tech </span></button>
 	</div>
+
+	<a class='discrete-donate' href="./donate"> <i class="fa-solid fa-hand-holding-heart"></i> Support my work </a>
 </div>
 
 </div>
