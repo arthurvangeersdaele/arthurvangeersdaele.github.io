@@ -439,21 +439,21 @@
 
 <script>
   const version_index = new Date().getTime(); // or use a custom version string
-
+  let cssHost_index = "https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@12bce98";
   const stylesheets = [
     {
       id: 'desktop-css',
-      href: `https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/desktop.css?v=${version_index}`,
+      href: cssHost_index + `/desktop.css?v=${version_index}`,
       media: 'all'
     },
     {
       id: 'mobile-css',
-      href: `https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/mobile.css?v=${version_index}`,
+      href: cssHost_index + `/mobile.css?v=${version_index}`,
       media: 'screen and (max-width: 768px)'
     },
     {
       id: 'print-css',
-      href: `https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/print.css?v=${version_index}`,
+      href: cssHost_index + `/print.css?v=${version_index}`,
       media: 'print'
     }
   ];
