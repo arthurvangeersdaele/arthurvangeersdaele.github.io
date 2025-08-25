@@ -357,7 +357,6 @@
 </body>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
-	    // Fonction pour détecter le navigateur
 	    function getBrowserName() {
 	        const userAgent = navigator.userAgent;
 	        if (userAgent.includes("Firefox")) return "Mozilla";
@@ -366,10 +365,8 @@
 	        else return "Autre";
 	    }
 	
-	    // Récupérer le nom du navigateur
 	    const browserName = getBrowserName();
 	
-	    // Si le navigateur n'est ni Chrome, ni Mozilla, ni Edge
 	    if (browserName !== "Chrome" && browserName !== "Mozilla" && browserName !== "Edge") {
 	        // Sélectionner tous les éléments video
 	        const videos = document.querySelectorAll('video');
@@ -445,5 +442,6 @@ playSequentialVideos();
 
 </script>
 </html>
+
 
 
