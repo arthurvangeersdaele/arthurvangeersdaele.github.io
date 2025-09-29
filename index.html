@@ -117,80 +117,36 @@
 	}
 
 	.button {
-	width: calc(1.618*150px);
-	height: 10vh;
-	border-radius: min(20px, 1vh);
-	overflow: hidden;
-	position: relative;
-	border: none;
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: white;
-	font-weight: bold;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-		"Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-	text-align: center;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-	font-size: min(24px, 3vh);
-	box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
-	background-size: cover;
-	background-position: center;
-	z-index: 1;
-	transition: transform 0.3s ease;
-}
-
-/* Frosted glass overlay */
-.button::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	border-radius: inherit;
-	background: rgba(255, 255, 255, 0.15);
-	backdrop-filter: blur(6px);
-	-webkit-backdrop-filter: blur(6px);
-	border: 1px solid rgba(255, 255, 255, 0.3);
-	z-index: 0;
-}
-
-/* Shiny diagonal reflection */
-.button::after {
-	content: "";
-	position: absolute;
-	inset: -50%; /* bigger so the diagonal covers fully */
-	background: linear-gradient(
-		120deg,
-		rgba(255, 255, 255, 0.4) 0%,
-		rgba(255, 255, 255, 0.15) 30%,
-		transparent 60%
-	);
-	transform: translateX(-100%) rotate(25deg);
-	border-radius: inherit;
-	transition: transform 0.8s ease;
-	z-index: 2; /* above glass, below text */
-	pointer-events: none;
-}
-
-/* Hover effects */
-.button:hover {
-	transform: scale(1.03);
-}
-
-.button:hover::after {
-	transform: translateX(100%) rotate(25deg);
-}
-
-	.button::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background: rgba(255, 255, 255, 0.15); /* frosted glass tint */
-		backdrop-filter: blur(6px);
-		-webkit-backdrop-filter: blur(6px);
-		border: 1px solid rgba(255, 255, 255, 0.3);
-		z-index: 0; /* stays behind the text */
+		width: calc(1.618*150px);
+		height: 10vh;
+		border-radius: min(20px, 1vh);
+		background-size: cover;
+		background-position: center;
+		border: none;
+		cursor: pointer;
+		/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+		box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
+					inset 0 4px 20px rgba(255, 255, 255, 0.3);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		color: white; /* Text color */
+		font-weight: bold; /* Makes the text bold */
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; /* Apple-styled font */
+		text-align: center; /* Centers the text */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative; /* Required for the pseudo-element to be positioned correctly */
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Adds subtle text shadow for better visibility */
+		font-size: min(24px, 3vh); /* Makes the text bigger */
+		z-index:1;
 	}
+	.button:hover{
+		z-index:2;
+		transform: scale(1.2);
+	}
+
+	.button::after {
+		content: ''; /* No text content */
 
 
 	.discrete-donate{
@@ -479,6 +435,7 @@ playSequentialVideos();
 
 </script>
 </html>
+
 
 
 
