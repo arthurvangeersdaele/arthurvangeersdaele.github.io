@@ -157,6 +157,17 @@
 		z-index: 1; /* Places the overlay below the text */
 	}
 
+	.button::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: rgba(255, 255, 255, 0.15); /* frosted glass tint */
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		z-index: 0; /* stays behind the text */
+	}
+
 
 	.discrete-donate{
 		position: fixed; /* ensure it detaches from the body flow */
@@ -444,6 +455,7 @@ playSequentialVideos();
 
 </script>
 </html>
+
 
 
 
