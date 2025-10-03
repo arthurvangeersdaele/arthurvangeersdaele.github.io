@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link rel="manifest" href="/manifest.json" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="manifest" href="/manifest.json">
 	<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Earth-africa-europe_-_Delapouite_-_game-icons.svg/640px-Earth-africa-europe_-_Delapouite_-_game-icons.svg.png">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer">
 
 	<title>Arthur</title>
 <style>
@@ -79,19 +79,19 @@
 		z-index: 10; /* ensure it appears above other elements */
 	}
 
-		h1 {
-			position: relative;
-			margin-top: 10vh;
-			font-size:min(48px, 3vw);
-			font-weight: 700;
-			margin-bottom:50px;
-		}
+	h1 {
+		position: relative;
+		margin-top: 10vh;
+		font-size:min(48px, 3vw);
+		font-weight: 700;
+		margin-bottom:50px;
+	}
 
-		p {
-			font-size:min(20px, 5vh);
-			font-weight: 600;
-			color: #444;
-		}
+	p {
+		font-size:min(20px, 5vh);
+		font-weight: 600;
+		color: #444;
+	}
 
 	.scroll-container {
 		position: absolute;
@@ -127,12 +127,14 @@
 		/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 		box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
 					inset 0 4px 20px rgba(255, 255, 255, 0.3);
+
 		transition: transform 0.3s ease, box-shadow 0.3s ease;
 		color: white; /* Text color */
 		font-weight: bold; /* Makes the text bold */
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; /* Apple-styled font */
 		text-align: center; /* Centers the text */
 		display: flex;
+		white-space: nowrap; 
 		justify-content: center;
 		align-items: center;
 		position: relative; /* Required for the pseudo-element to be positioned correctly */
@@ -142,12 +144,21 @@
 	}
 	.button:hover{
 		z-index:2;
-		transform: scale(1.2);
+		transform: scale(1.05);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+
+		background: rgba(255, 255, 255, 0.1); /* translucent base */
+ 		transition: all 0.5s ease, transform 0.3s ease;
+ 		padding:0px 30px 0px 30px;
 	}
 
+	.button:hover::before {
+	    filter: blur(0.5px) saturate(150%) contrast(50%) brightness(110%);
+
+	}
 	.button::after {
 		content: ''; /* No text content */
-
+	}
 
 	.discrete-donate{
 		position: fixed; /* ensure it detaches from the body flow */
@@ -181,7 +192,7 @@
 
 
 /* mobile css */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
 	html, body {
 		margin: 0;
 		padding: 0;
@@ -275,7 +286,6 @@
 		border-radius: 24px;
 		z-index: 1;
 	}
-	/* Improve tap targets on small screens */
 
 	.button:active {
 		transform: none !important;
@@ -296,13 +306,8 @@
 	z-index: 2; /* Makes sure the text is above the overlay */
 }
 
-.button:hover {
-	transform: scale(1.05);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
 /* Sample background images for the buttons */
-.button1 {
+/*.button1 {
 	background-image: url('https://static.wixstatic.com/media/ac4452_389b165201a044a0ae2cd40c4582040f~mv2.jpg/v1/fill/w_870,h_516,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Tumor%202%20WEb_7830_edited.jpg');
 }
 
@@ -320,12 +325,77 @@
 
 .button5 {
 	background-image: url('https://www.uclouvain.be/system/files/styles/wide/private/uclouvain_assetmanager/groups/cms-editors-fondlouv/lydie/Breath4Life_UCLouvain_3_corr.jpg?h=5857f9cc&itok=jBTb4LFU');
+}*/
+
+.button1,
+.button2,
+.button3,
+.button4,
+.button5 {
+  position: relative;
+  overflow: hidden;
+  color: white;           /* keep text visible */
+  z-index: 0;             /* ensure text stays above */
+  opacity:1.0;
 }
+
+/* Pseudo-element for background */
+.button1::before,
+.button2::before,
+.button3::before,
+.button4::before,
+.button5::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0; */
+  background-size: cover;
+  background-position: center;
+  opacity: 1.0; /* adjust transparency */
+  z-index: -1;  /* put behind the button content */
+  filter: blur(0.5px) saturate(50%) contrast(50%) brightness(90%);
+  animation: all 0.5s ease;
+
+}
+
+/* Assign individual images */
+.button1::before {
+  background-image: url('https://static.wixstatic.com/media/ac4452_389b165201a044a0ae2cd40c4582040f~mv2.jpg/v1/fill/w_870,h_516,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Tumor%202%20WEb_7830_edited.jpg'); 
+}
+
+.button2::before {
+  background-image: url('https://www.croix-rouge.be/content/uploads/sites/5/2020/06/DSC7944-1024x684.jpg');
+}
+
+.button3::before {
+  background-image: url('./imgs/3DP_heart.jpg');
+}
+
+.button4::before {
+  background-image: url('./imgs/open_source_scd.png');
+}
+
+.button5::before {
+  background-image: url('https://www.uclouvain.be/system/files/styles/wide/private/uclouvain_assetmanager/groups/cms-editors-fondlouv/lydie/Breath4Life_UCLouvain_3_corr.jpg?h=5857f9cc&itok=jBTb4LFU');
+}
+
+
 
 
 </style>
 </head>
 <body>
+
+	<!-- SVG filter for distortion -->
+	<svg style="display:none">
+	  <filter id="glass-distortion">
+	    <feTurbulence type="turbulence" baseFrequency="0.1" numOctaves="10" seed="2" result="noise">
+	      <animate attributeName="baseFrequency" dur="10s" values="0.01;0.02;0.01" repeatCount="indefinite"/>
+	    </feTurbulence>
+	    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1000" xChannelSelector="B" yChannelSelector="G"/>
+	  </filter>
+	</svg>
+
+	<!-- main content -->
 	<video id="background-video" autoplay muted loop playsinline></video>
 	<header class="name"> Arthur Van Geersdaele </header>
 	<div class="content">
@@ -335,11 +405,11 @@
 	</div>
 
 	<div class="scroll-container">
-		<button tabindex="-1" class="button button1" onclick="goTo('./cv/')"> <span> Curriculum Vitae</span> </button>
+		<button tabindex="-1" class="button button1" onclick="goTo('./cv/')"> <span> Curriculum<br>Vitae</span> </button>
 		<button tabindex="-1" class="button button2" onclick="goTo('./crb/')"> <span> Red-Cross </span></button>
-		<button tabindex="-1" class="button button3" onclick="goTo('./3dp/')"> <span> 3D Printing </span></button>
-		<button tabindex="-1" class="button button4" onclick="goTo('https://github.com/arthurvangeersdaele?tab=repositories')"> <span> Open-Source Projects </span></button>
-		<button tabindex="-1" class="button button5" onclick="goTo('https://openmedtech.odoo.com/')"> <span> Open MedTech </span></button>
+		<button tabindex="-1" class="button button3" onclick="goTo('./3dp/')"> <span> 3D<br>Printing </span></button>
+		<button tabindex="-1" class="button button4" onclick="goTo('https://github.com/arthurvangeersdaele?tab=repositories')"> <span> Open-Source<br>Projects </span></button>
+		<button tabindex="-1" class="button button5" onclick="goTo('https://openmedtech.odoo.com/')"> <span> OpenMedTech </span></button>
 	</div>
 
 <!-- 	<a class='discrete-donate' href="./donate"> <i class="fa-solid fa-hand-holding-heart"></i> Support my work </a> -->
@@ -367,7 +437,7 @@
 	        videos.forEach(video => {
 	            video.remove();
 	        });
-	    }
+	    }glass-distortion
 	});
 
 	function goTo(url) {
