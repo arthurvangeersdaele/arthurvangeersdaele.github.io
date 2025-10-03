@@ -144,12 +144,12 @@
 	}
 	.button:hover{
 		z-index:2;
-		transform: scale(1.05);
+		transform: scale(1.15, 1.05);
 		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 
 		background: rgba(255, 255, 255, 0.1); /* translucent base */
  		transition: all 0.5s ease, transform 0.3s ease;
- 		padding:0px 30px 0px 30px;
+
 	}
 
 	.button:hover::before {
@@ -352,8 +352,8 @@
   background-position: center;
   opacity: 1.0; /* adjust transparency */
   z-index: -1;  /* put behind the button content */
-  filter: blur(0.5px) saturate(50%) contrast(50%) brightness(90%);
-  animation: all 0.5s ease;
+  filter: blur(0.5px) saturate(75%) contrast(50%) brightness(100%);
+  animation: all 0.5s ease, transform 0.3s ease;
 
 }
 
@@ -409,7 +409,7 @@
 		<button tabindex="-1" class="button button2" onclick="goTo('./crb/')"> <span> Red-Cross </span></button>
 		<button tabindex="-1" class="button button3" onclick="goTo('./3dp/')"> <span> 3D<br>Printing </span></button>
 		<button tabindex="-1" class="button button4" onclick="goTo('https://github.com/arthurvangeersdaele?tab=repositories')"> <span> Open-Source<br>Projects </span></button>
-		<button tabindex="-1" class="button button5" onclick="goTo('https://openmedtech.odoo.com/')"> <span> OpenMedTech </span></button>
+		<button tabindex="-1" class="button button5" onclick="goTo('https://openmedtech.odoo.com/')"> <span> Open<br>MedTech </span></button>
 	</div>
 
 <!-- 	<a class='discrete-donate' href="./donate"> <i class="fa-solid fa-hand-holding-heart"></i> Support my work </a> -->
