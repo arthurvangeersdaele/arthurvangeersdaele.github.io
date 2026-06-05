@@ -578,34 +578,61 @@
 </body>
 
 <script>
-  const version_index = new Date().getTime(); // or use a custom version string
-  let cssHost_index = "https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@90aaae3";
-  const stylesheets = [
-    {
-      id: 'desktop-css',
-      href: cssHost_index + `/desktop.css?v=${version_index}`,
-      media: 'all'
-    },
-    {
-      id: 'mobile-css',
-      href: cssHost_index + `/mobile.css?v=${version_index}`,
-      media: 'screen and (max-width: 768px)'
-    },
-    {
-      id: 'print-css',
-      href: cssHost_index + `/print.css?v=${version_index}`,
-      media: 'print'
-    }
-  ];
+  // const version_index = new Date().getTime(); // or use a custom version string
+  // let cssHost_index = "https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@90aaae3";
 
-  stylesheets.forEach(({ id, href, media }) => {
-    const link = document.createElement('link');
-    link.id = id;
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.media = media;
-    document.head.appendChild(link);
-  });
+  // const stylesheets = [
+  //   {
+  //     id: 'desktop-css',
+  //     href: cssHost_index + `/desktop.css?v=${version_index}`,
+  //     media: 'all'
+  //   },
+  //   {
+  //     id: 'mobile-css',
+  //     href: cssHost_index + `/mobile.css?v=${version_index}`,
+  //     media: 'screen and (max-width: 768px)'
+  //   },
+  //   {
+  //     id: 'print-css',
+  //     href: cssHost_index + `/print.css?v=${version_index}`,
+  //     media: 'print'
+  //   }
+  // ];
+
+  // stylesheets.forEach(({ id, href, media }) => {
+  //   const link = document.createElement('link');
+  //   link.id = id;
+  //   link.rel = 'stylesheet';
+  //   link.href = href;
+  //   link.media = media;
+  //   document.head.appendChild(link);
+  // });
+    const stylesheets = [
+      {
+        id: 'desktop-css',
+        href: 'css/desktop.css',
+        media: 'all'
+      },
+      {
+        id: 'mobile-css',
+        href: 'css/mobile.css',
+        media: 'screen and (max-width: 768px)'
+      },
+      {
+        id: 'print-css',
+        href: 'css/print.css',
+        media: 'print'
+      }
+    ];
+
+    stylesheets.forEach(({ id, href, media }) => {
+      const link = document.createElement('link');
+      link.id = id;
+      link.rel = 'stylesheet';
+      link.href = href;
+      link.media = media;
+      document.head.appendChild(link);
+    });
 </script>
     
 <script src="https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@90aaae3/script.js"></script>
