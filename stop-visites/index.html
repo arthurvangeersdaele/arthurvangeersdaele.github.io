@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stop visites domiciliaires</title>
+<meta name="description" content="Écris en deux clics aux 16 député·es Les Engagés pour qu'iels votent contre la loi visites domiciliaires le 5 novembre.">
+<meta property="og:title" content="Stop visites domiciliaires — écris aux député·es">
+<meta property="og:description" content="Choisis ton accord, entre ton nom, et ton mail s'ouvre déjà rédigé. Vote le 5 novembre.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#14101C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,500..900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column on a night ground, the Progress flag chevron as the masthead; each step lit by a flag stripe */
+:root{
+  --bg:#14101C; --surface:#1F1A2B; --surface-2:#2A2339; --ink:#F6F1FA; --muted:#B4A9C4; --line:#3A3149;
+  --pink:#F5A9B8; --blue:#5BCEFA; --brown:#8B5A2B;
+  --red:#E40303; --orange:#FF8C00; --yellow:#FFED00; --green:#00A651; --indigo:#2B6BFF; --violet:#A23BD1;
+  --hot:#FF5FA8; --hot-ink:#14101C;
+  --display:"Archivo",system-ui,sans-serif; --body:"Source Serif 4",Georgia,serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --rainbow:linear-gradient(90deg,var(--red) 0 16.66%,var(--orange) 0 33.33%,var(--yellow) 0 50%,var(--green) 0 66.66%,var(--indigo) 0 83.33%,var(--violet) 0);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:660px;margin:0 auto;padding-block:28px 64px;display:flex;flex-direction:column;gap:30px}
+
+.flag{display:block;width:100%;height:auto;max-width:100%}
+header{display:flex;flex-direction:column;gap:14px}
+.eyebrow{font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pink)}
+h1{font:900 clamp(40px,11vw,72px)/.88 var(--display);font-stretch:66%;margin:0;text-transform:uppercase;text-wrap:balance}
+h1 .out{display:block;-webkit-text-stroke:2px var(--ink);color:transparent}
+.bar{height:8px;background:var(--rainbow)}
+.lede{margin:0;color:var(--muted);max-width:60ch;font-size:17px}
+.lede b{color:var(--ink);font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font:500 13px var(--mono);padding:6px 10px;border:1.5px solid var(--ink);border-radius:999px}
+.tag.hot{background:var(--hot);border-color:var(--hot);color:var(--hot-ink)}
+
+section{display:flex;flex-direction:column;gap:12px;border-left:4px solid var(--c,var(--hot));padding-left:14px}
+h2{font:800 16px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase;margin:0;display:flex;gap:10px;align-items:baseline}
+h2 .n{font:500 12px var(--mono);color:var(--c)}
+
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{display:flex;flex-direction:column;gap:2px;padding:14px 12px 12px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);cursor:pointer;height:100%;position:relative;overflow:hidden}
+.chip label::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--cc)}
+.chip label b{font:800 18px var(--display);font-stretch:85%}
+.chip label span{font-size:13px;color:var(--muted)}
+.chip input:checked+label{border-color:var(--cc);background:var(--surface-2);box-shadow:0 0 0 2px var(--cc) inset}
+.chip input:focus-visible+label{outline:2px solid var(--ink);outline-offset:3px}
+
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font:500 13px var(--mono);color:var(--muted)}
+input[type=text]{font:18px var(--body);padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);width:100%}
+input[type=text]::placeholder{color:#7F7590}
+input[type=text]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(91,206,250,.25)}
+
+.hint{font-size:15px;color:var(--muted);margin:0}
+.sends{display:flex;flex-direction:column;gap:14px}
+.send{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.send::after{content:"";position:absolute;inset:auto 0 0;height:5px;background:var(--rainbow)}
+.send-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.send-head h3{font:900 26px/1 var(--display);font-stretch:75%;text-transform:uppercase;margin:0}
+.count{font:500 12px var(--mono);color:var(--muted)}
+.status{font:500 13px var(--mono);color:var(--yellow)}
+
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn,button{font:800 15px var(--display);padding:12px 18px;border:1.5px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--hot);border-color:var(--hot);color:var(--hot-ink)}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary:hover{background:var(--pink);border-color:var(--pink)}
+button.small{font:500 12px var(--mono);padding:6px 12px;border-color:var(--line)}
+button.small:hover{border-color:var(--blue);color:var(--blue)}
+.btn:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+details{border-top:1px dashed var(--line);padding-top:12px}
+summary{font:500 13px var(--mono);color:var(--muted);cursor:pointer}
+.rows{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.row{display:flex;flex-direction:column;gap:4px;min-width:0}
+.row-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.row-h span{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.addr{font:13px/1.6 var(--mono);word-break:break-all;background:var(--bg);border-radius:10px;padding:9px 11px;margin:0}
+.letter{background:#FBF7FD;color:#1E1726;border-radius:10px;padding:16px;white-space:pre-wrap;font:15px/1.6 var(--body);max-height:360px;overflow:auto;margin:0}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--yellow);color:#14101C;font:500 13px var(--mono);padding:10px 16px;border-radius:999px}
+footer{font-size:14px;color:var(--muted);display:flex;flex-direction:column;gap:8px}
+footer a{color:var(--blue)}
+footer .bar{height:4px;margin-bottom:8px}
+@media (max-width:440px){.chips{grid-template-columns:1fr}.chip label{flex-direction:row;justify-content:space-between;align-items:baseline}}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- Progress Pride flag (Daniel Quasar, 2018) -->
+  <svg class="flag" viewBox="0 0 660 120" preserveAspectRatio="none" role="img" aria-label="Drapeau Progress Pride">
+    <rect width="660" height="20" y="0" fill="#E40303"/><rect width="660" height="20" y="20" fill="#FF8C00"/>
+    <rect width="660" height="20" y="40" fill="#FFED00"/><rect width="660" height="20" y="60" fill="#00A651"/>
+    <rect width="660" height="20" y="80" fill="#2B6BFF"/><rect width="660" height="20" y="100" fill="#A23BD1"/>
+    <polygon points="0,0 150,0 210,60 150,120 0,120" fill="#14101C"/>
+    <polygon points="0,0 120,0 180,60 120,120 0,120" fill="#8B5A2B"/>
+    <polygon points="0,0 90,0 150,60 90,120 0,120" fill="#5BCEFA"/>
+    <polygon points="0,0 60,0 120,60 60,120 0,120" fill="#F5A9B8"/>
+    <polygon points="0,0 30,0 90,60 30,120 0,120" fill="#FFFFFF"/>
+  </svg>
+
+  <header>
+    <div class="eyebrow">No Ice In Belgium · campagne de mails queer &amp; solidaire</div>
+    <h1>Pas de flics <span class="out">dans nos maisons</span></h1>
+    <p class="lede">Nos maisons ont toujours été des refuges : pour les queers mis·es à la porte, pour les exilé·es, pour qui en a besoin. La loi « visites domiciliaires » permettrait à la police d’y entrer pour arrêter des personnes sans papiers. <b>Écris aux 16 député·es Les Engagés</b> pour qu’iels votent contre.</p>
+    <div class="meta"><span class="tag hot">Vote le jeudi 5 novembre</span><span class="tag">2 mails · 1 minute</span></div>
+  </header>
+
+  <section style="--c:var(--blue)">
+    <h2><span class="n">01</span>Je signe en tant que</h2>
+    <div class="chips" role="radiogroup" aria-label="Accord du texte">
+      <div class="chip" style="--cc:var(--pink)"><input type="radio" name="g" id="g-f" value="f" checked><label for="g-f"><b>Citoyenne</b><span>engagée, convaincue</span></label></div>
+      <div class="chip" style="--cc:var(--blue)"><input type="radio" name="g" id="g-m" value="m"><label for="g-m"><b>Citoyen</b><span>engagé, convaincu</span></label></div>
+      <div class="chip" style="--cc:var(--yellow)"><input type="radio" name="g" id="g-n" value="n"><label for="g-n"><b>Citoyen·ne</b><span>engagé·e, convaincu·e</span></label></div>
+    </div>
+  </section>
+
+  <section style="--c:var(--pink)">
+    <h2><span class="n">02</span>Mon nom</h2>
+    <div class="field">
+      <label for="name">Le nom avec lequel tu veux signer</label>
+      <input type="text" id="name" autocomplete="name" placeholder="Alex Dubois">
+    </div>
+  </section>
+
+  <section style="--c:var(--yellow)">
+    <h2><span class="n">03</span>Deux envois, n’oublie personne</h2>
+    <p class="hint">Le parti en destinataire, les député·es en copie cachée (Cci). Relis, personnalise si tu veux, puis appuie sur Envoyer dans ton app.</p>
+    <div class="sends" id="sends"></div>
+  </section>
+
+  <footer>
+    <div class="bar"></div>
+    <span>Texte et adresses repris de l’appel <a href="https://stuut.info/No-Ice-In-Belgium-Campagne-de-mails-Stop-visites-domiciliaires-14483">publié sur Stuut</a>. Infos et rassemblements : <a href="https://no-ice-in-belgium.net/">no-ice-in-belgium.net</a>.</span>
+    <span>Cette page n’envoie rien et ne garde rien : c’est ton app mail qui envoie. Partage-la autour de toi. 🏳️‍🌈🏳️‍⚧️</span>
+  </footer>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const TO = "info@lesengages.be";
+const GROUPS = [
+  { id:"h", title:"Aux députés", sal:"Monsieur le Député",
+    bcc:["yvan.verougstraete@lesengages.be","michel.demaedg@lachambre.be","xavier.dubois@lachambre.be","luc.frank@lachambre.be","jean-francois.gatelier@lachambre.be","serge.hiligsmann@gmail.com","pierre@pierrekompany.be","stephane.lasseaux@lachambre.be","marc.lejeune@lachambre.be","bourgmestre@bastogne.be","secreteriat.matagne@gmail.com","ismael.nuino@lachambre.be"] },
+  { id:"f", title:"Aux députées", sal:"Madame la Députée",
+    bcc:["isabelle.hansez@lachambre.be","anne.pirson@lachambre.be","carmen.ramlot@lachambre.be","aurore.tourneur@lachambre.be"] }
+];
+const SUBJECT = "Visites domiciliaires : un vote de conscience pour protéger nos libertés fondamentales";
+const W = {
+  f:{cit:"citoyenne belge engagée et inquiète", conv:"convaincue"},
+  m:{cit:"citoyen belge engagé et inquiet", conv:"convaincu"},
+  n:{cit:"citoyen·ne belge engagé·e et inquiet·ète", conv:"convaincu·e"}
+};
+
+function letter(g, sal, name){
+  const nm = name.trim() || "[ton prénom et nom]";
+  const w = W[g];
+  return `${sal},
+
+Je m’appelle ${nm}, ${w.cit} pour l’avenir de la solidarité dans notre pays. Je vous écris pour vous demander de voter contre le projet de loi autorisant les visites domiciliaires le 5 novembre prochain.
+
+Ce projet constitue une atteinte grave à l’inviolabilité du domicile et au respect de la vie privée et familiale. Il permettrait à la police de pénétrer chez des citoyens hébergeant des personnes sans titre de séjour, sans qu’aucune infraction pénale ne soit reprochée aux occupants. L’État de droit, l’égalité devant la loi et les libertés fondamentales sont en jeu.
+
+Je suis ${w.conv} que les garanties judiciaires doivent protéger chacun, quel que soit son statut administratif. Les juges d’instruction, Avocats.be, le Délégué général aux droits de l’enfant, 200 organisations de la société civile et le Conseil d’État alertent sur les risques de ce texte. L’hospitalité ne devrait pas inquiéter ceux qui accueillent des personnes vulnérables, d’autant plus s’il y a possibilité de porter atteinte à l’intégrité des enfants présents dans ces domiciles. L’État dispose déjà de procédures pénales permettant d’intervenir en cas de danger ou suspicion de terrorisme tout en garantissant les droits de chacun.
+
+Je m’attends donc à ce que les inquiétudes exprimées par les organismes et associations trouvent écho auprès de vous puisque l’État de droit, l’indépendance de la justice et la protection des droits fondamentaux sont des valeurs présentes dans votre programme :
+« La démocratie, ce n’est pas que la possibilité d’élire ses représentants et ses dirigeants et de prendre des décisions à la majorité. C’est aussi l’État de droit qui protège chacun et chacune contre l’arbitraire de l’autre et de l’État grâce à une justice indépendante et impartiale et à une police contrôlée. C’est enfin la protection des droits fondamentaux de tous, y compris les minorités. »
+
+Car c’est surtout une question démocratique : 53 communes ont adopté une motion « Commune hospitalière », dont certaines dirigées par Les Engagés, notamment Walhain qui s’est explicitement opposée au projet. Début octobre, le Parlement bruxellois a également adopté une résolution contre celui-ci.
+
+Je vous rappelle qu’en 2018, le CDH s’était prononcé : « toujours unanimement contre cette mesure, qui est liberticide, qui est une violation aux droits fondamentaux de la propriété et de la liberté. » En 2022, votre parti affirmait d’ailleurs que : « Se soucier de chaque être humain en détresse fait partie de notre ADN. Notre humanisme ne s’arrête pas à des papiers d’identité. »
+
+À l’image de votre collègue député fédéral et bourgmestre de Walhain, Xavier Dubois, je vous appelle à faire preuve de courage politique en vous désolidarisant du gouvernement et en votant contre ce texte. Faites de ce vote une question de conscience, fidèle aux valeurs humanistes et démocratiques des Engagés, plutôt qu’une question de discipline de majorité. Défendons ensemble la dignité humaine et nos libertés fondamentales.
+
+En attendant une réponse favorable de votre part, je vous remercie pour votre attention et vous prie d’agréer, ${sal}, l’expression de ma considération distinguée.
+
+${nm}`;
+}
+
+const $ = s => document.querySelector(s);
+const enc = encodeURIComponent;
+function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,1800)}
+async function copy(text, el){
+  try{await navigator.clipboard.writeText(text);toast("Copié ✨")}
+  catch(e){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Sélectionné : fais Ctrl+C")}
+}
+
+GROUPS.forEach(gr=>{
+  const el=document.createElement("article");el.className="send";
+  el.innerHTML=`
+    <div class="send-head"><h3>${gr.title}</h3><span class="count">${gr.bcc.length} adresses · « ${gr.sal} »</span></div>
+    <div class="btns">
+      <a class="btn primary" id="mail-${gr.id}">Ouvrir dans mon app mail</a>
+      <a class="btn" id="gm-${gr.id}" target="_blank" rel="noopener">Ouvrir dans Gmail</a>
+    </div>
+    <span class="status" id="st-${gr.id}" hidden>Ouvert ! N’oublie pas d’appuyer sur Envoyer.</span>
+    <details>
+      <summary>Ça ne s’ouvre pas ? Copie les éléments un par un</summary>
+      <div class="rows">
+        <div class="row"><div class="row-h"><span>À</span><button class="small" data-c="to-${gr.id}">Copier</button></div><p class="addr" id="to-${gr.id}">${TO}</p></div>
+        <div class="row"><div class="row-h"><span>Cci</span><button class="small" data-c="bcc-${gr.id}">Copier</button></div><p class="addr" id="bcc-${gr.id}">${gr.bcc.join(", ")}</p></div>
+        <div class="row"><div class="row-h"><span>Objet</span><button class="small" data-c="sub-${gr.id}">Copier</button></div><p class="addr" id="sub-${gr.id}">${SUBJECT}</p></div>
+        <div class="row"><div class="row-h"><span>Texte</span><button class="small" data-c="body-${gr.id}">Copier</button></div><pre class="letter" id="body-${gr.id}"></pre></div>
+      </div>
+    </details>`;
+  $("#sends").appendChild(el);
+  el.querySelectorAll("[data-c]").forEach(b=>b.addEventListener("click",()=>{const t=$("#"+b.dataset.c);copy(t.textContent,t)}));
+  [$("#mail-"+gr.id),$("#gm-"+gr.id)].forEach(a=>a.addEventListener("click",()=>{$("#st-"+gr.id).hidden=false}));
+});
+
+function render(){
+  const g=document.querySelector('input[name=g]:checked').value;
+  const name=$("#name").value;
+  store("svd-g",g);store("svd-name",name);
+  GROUPS.forEach(gr=>{
+    const body=letter(g,gr.sal,name);
+    $("#body-"+gr.id).textContent=body;
+    $("#mail-"+gr.id).href=`mailto:${TO}?bcc=${gr.bcc.join(",")}&subject=${enc(SUBJECT)}&body=${enc(body)}`;
+    $("#gm-"+gr.id).href=`https://mail.google.com/mail/?view=cm&fs=1&to=${enc(TO)}&bcc=${enc(gr.bcc.join(","))}&su=${enc(SUBJECT)}&body=${enc(body)}`;
+  });
+}
+const sg=load("svd-g"), sn=load("svd-name");
+if(sg&&document.getElementById("g-"+sg)) document.getElementById("g-"+sg).checked=true;
+if(sn) $("#name").value=sn;
+document.querySelectorAll('input[name=g]').forEach(r=>r.addEventListener("change",render));
+$("#name").addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
